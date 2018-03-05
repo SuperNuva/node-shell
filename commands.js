@@ -1,20 +1,18 @@
 const fs = require('fs');
 
 module.exports = {
-  date: function() {
+  date: function(param) {
     var d = Date(Date.now());
       process.stdout.write(d);
       process.stdout.write('\nprompt > ');
   },
 
-  echo: function() {
-    let args = Array.from(arguments);
-
-    process.stdout.write(args[0]);
+  echo: function(str) {
+    process.stdout.write(str);
     process.stdout.write('\nprompt > ');
   },
 
-  ls: function() {
+  ls: function(param) {
     fs.readdir('.', function(err, files) {
       if (err) throw err;
       files.forEach(function(file) {
@@ -24,7 +22,7 @@ module.exports = {
     });
   },
 
-  pwd: function() {
+  pwd: function(param) {
       process.stdout.write(`${process.cwd()}`);
       process.stdout.write('\nprompt > ');
     },

@@ -6,13 +6,13 @@ process.stdout.write('\nprompt > ');
 
 process.stdin.on('data', function (data) {
     cmd = data.toString().trim();
-    let str;
-    if (cmd.slice(0, 4) === 'echo') {
-      str = cmd.slice(5);
+    let filename;
+    if (cmd.slice(0, cmd.indexOf(' ')) === 'echo') {
+      filename = cmd.slice(cmd.indexOf(' ') + 1);
       cmd = 'echo';
     }
 
-    commands[cmd](str);
+    commands[cmd](filename);
 
 });
 
@@ -20,3 +20,4 @@ process.stdin.on('data', function (data) {
 // 'echo' => cmd; 'hello world' => str
 // 'echo hello world' => slice(0, 4) => echo
 // str = slice(5);
+
